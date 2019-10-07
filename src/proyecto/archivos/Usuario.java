@@ -1,3 +1,10 @@
+package proyecto.archivos;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -41,10 +48,26 @@ public class Usuario extends javax.swing.JFrame {
         jLabel2.setText("Ingrese su contraseña");
 
         jButton1.setText("Iniciar Sesion ");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Crear una cuenta nueva");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("No tiene cuenta?");
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,6 +118,57 @@ public class Usuario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //AQUIIIIIIIIIIIIIIIIIIIIIIIIII
+        String ruta = "C:/MEIA/Usuario.txt" ;
+        File archivo = new File(ruta);
+        BufferedReader bw;
+        if(archivo.exists()) 
+        {
+            try{
+               bw = new BufferedReader(new FileReader(archivo));
+               String Linea;
+               Linea = bw.readLine();
+               while(Linea!=null)  
+               {
+                   String[] parts = Linea.split("-");
+                   String Nombre = jTextField1.getText();
+                   String Contrasena = jPasswordField1.getText();
+                   if (Nombre.equals(parts[0])&&Contrasena.equals(parts[1])) 
+                   {
+                       java.awt.EventQueue.invokeLater(new Runnable()
+                        {
+                            public void run()
+                        {
+                        new Perfil().setVisible(true);
+                        }
+                        });
+                       break;
+                   }
+               }
+               bw.close();
+            }
+            catch(IOException ex){
+            }
+        }    
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+         java.awt.EventQueue.invokeLater(new Runnable()
+                        {
+                            public void run()
+                        {
+                        new CreacionUsuario().setVisible(true);
+                        }
+                        });
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
