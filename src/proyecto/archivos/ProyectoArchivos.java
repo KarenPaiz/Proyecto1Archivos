@@ -116,7 +116,29 @@ public class ProyectoArchivos {
             catch(IOException ex){
             }
         }
-        
+        //ARCHIVO PUNTUACION
+        ruta = "C:/MEIA/Archivo puntuación.txt" ;
+        archivo = new File(ruta);
+        if(archivo.exists()) 
+        {
+            try{
+               bw = new BufferedWriter(new FileWriter(archivo.getAbsoluteFile(), true));
+               bw.write("");
+               bw.close();
+            }
+            catch(IOException ex){
+            }
+        }    
+        else 
+        {
+            try{
+            bw = new BufferedWriter(new FileWriter(archivo));
+            bw.write("6" +'\n'+"3" +'\n'+"2"+'\n' +"1"+'\n' +"2"+'\n' +"4" +'\n'+"6" +'\n'+"3");
+            bw.close();
+            }
+            catch(IOException ex){
+            }
+        }
         
         java.awt.EventQueue.invokeLater(new Runnable()
         {
