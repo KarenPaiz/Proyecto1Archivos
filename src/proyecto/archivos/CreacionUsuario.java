@@ -1,10 +1,19 @@
 package proyecto.archivos;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.time.format.DateTimeFormatter;  
+import java.time.LocalDateTime;  
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -53,6 +62,10 @@ public class CreacionUsuario extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
+        jLabel9 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         jFormattedTextField1.setText("jFormattedTextField1");
 
@@ -98,6 +111,8 @@ public class CreacionUsuario extends javax.swing.JFrame {
             }
         });
 
+        jLabel9.setText("Usuario");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -106,40 +121,49 @@ public class CreacionUsuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel8))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                            .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel11))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(101, 101, 101)
                         .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jButton2)
+                        .addGap(57, 57, 57)
+                        .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7)))
-                .addContainerGap(51, Short.MAX_VALUE))
+                        .addComponent(jLabel10))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel9)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -163,11 +187,13 @@ public class CreacionUsuario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
-                    .addComponent(jLabel7))
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(22, 22, 22))
@@ -185,41 +211,92 @@ public class CreacionUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+
+        String Usuario = jTextField6.getText();
+        String Contrasena = jPasswordField1.getText();
         String Nombre = jTextField1.getText();
         String Apellido = jTextField2.getText();
         String Nacimiento = jTextField3.getText();
-        String correo = jTextField4.getText();
+        String Correo = jTextField4.getText();
         String Telefono = jTextField5.getText();
-        String Contrasena = jPasswordField1.getText();
-        if (contrasenia(Contrasena)>31){
-            //CONTRASENIA NO SEGURA
+        int NivelSeguridad = contrasenia(Contrasena);
+        boolean GUARDADO = true;
+        if(Usuario==null||Nombre==null||Apellido==null||Nacimiento==null||Correo==null||Telefono==null||Contrasena==null||jLabel11==null){
+            GUARDADO = false;
         }
-        if (rootPaneCheckingEnabled) {
-            //Numero de telefono no es numero
+      
+        if (NivelSeguridad<20) {
+            jLabel11.setText("Contraseña insegura");
+            GUARDADO = false;
         }
-        if (rootPaneCheckingEnabled) {
-            //Fecha invalida
+        else if (NivelSeguridad<30) {
+             jLabel11.setText("Contraseña poco insegura");
+             GUARDADO = false;
         }
-        if (rootPaneCheckingEnabled) {
-            //Foto invalida
+        else if (NivelSeguridad<45) {
+             jLabel11.setText("Contraseña segura");
         }
-        
-        
-        
-        
+        else{
+             jLabel11.setText("Contraseña muy segura");
+        }
+        char[] numero = Telefono.toCharArray();
+        for(int j=0; j<numero.length; j++) {
+            if(!(numero[j]=='0'||numero[j]=='1'||numero[j]=='2'||numero[j]=='3'||numero[j]=='4'||numero[j]=='5'||numero[j]=='6'||numero[j]=='7'||numero[j]=='8'||numero[j]=='9'))
+            {
+		GUARDADO = false;
+            }
+        }
+        if(GUARDADO == true)
+            {
+                String Foto = jLabel10.getText();
+                boolean SePudo = GuardarUsuarios(Usuario,Contrasena,Nombre,Apellido,Nacimiento,Correo,Telefono,Foto);
+                if (SePudo) {
+                    
+                    java.awt.EventQueue.invokeLater(new Runnable() {
+                        public void run() {
+                            new Perfil(Usuario).setVisible(true);
+                        }
+                    });
+                }
+                
+            }
+        else{
+            JOptionPane.showMessageDialog(null,"No se puede ingresar un nuevo usuario");
+            }
+          
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       
+        JFileChooser dialogo = new JFileChooser();
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("", "jpg");
+        File ficheroImagen;
+        String rutaArchivo;
+        dialogo.setFileFilter(filtro);
+        int valor = dialogo.showOpenDialog(this);
+        if (valor == JFileChooser.APPROVE_OPTION) {
+            ficheroImagen = dialogo.getSelectedFile();
+            rutaArchivo = ficheroImagen.getPath();
+            jLabel10.setText(rutaArchivo);
+            Path srcPathObj = Paths.get(rutaArchivo);
+            Path srcPathObj2 = Paths.get("C:\\MEIA\\Fotos\\");
+        try {
+            Files.move(srcPathObj, srcPathObj2.resolve(srcPathObj.getFileName()));
+            // TODO add your handling code here:
+        } catch (IOException ex) {
+            
+        }
+        
+        
+        }  
+        
     }//GEN-LAST:event_jButton2ActionPerformed
-        public int contrasenia (String Contrasena)
+    public int contrasenia (String Contrasena)
     {
         int Puntucacion=0;
-        File archivo = new File ("C:\\Archivo puntuación.txt");
+        File archivo = new File ("C:\\MEIA\\Archivo puntuación.txt");
         FileReader fr = null;
         try {
-            fr = new FileReader ("C:\\Archivo puntuación.txt");
+            fr = new FileReader ("C:\\MEIA\\Archivo puntuación.txt");
             BufferedReader br = new BufferedReader(fr);
             int coso =Integer.parseInt(br.readLine());
             if (Contrasena.length() < coso )
@@ -268,6 +345,230 @@ public class CreacionUsuario extends javax.swing.JFrame {
         return Puntucacion;
     }
     
+   public String CifradoContrasena(String Clave)
+   {
+       String Regresa = "";
+       
+       return Regresa;
+   }
+   public boolean GuardarUsuarios(String Usuario, String Contrasena, String Nombre, String Apellido, String Nacimiento, String Correo, String Telefono, String Foto)
+   {
+       boolean SiSePudo = true;
+        boolean EsAdmin = false; 
+        boolean ActualizaUsuario = false;
+        String ruta = "C:/MEIA/Bitacora.txt" ;        
+        File archivo = new File(ruta);
+        BufferedWriter bw;
+        BufferedReader AA;
+        String Rol = "";
+        String[] RegistrosAMover;
+        if(archivo.exists()) 
+        {
+            try
+            {
+                AA = new BufferedReader (new FileReader(archivo));
+                bw = new BufferedWriter(new FileWriter(archivo.getAbsoluteFile(), true));
+                String Linea = AA.readLine();
+                int ContadorRegistros = 0;
+                if (Linea==null) 
+                { 
+                    Rol = "administrador";
+                    bw.write(Usuario+"|"+Contrasena+"|"+Nombre+"|"+Apellido+"|"+Nacimiento+"|"+Correo+"|"+Telefono+"|"+Foto+"|"+Rol+"|"+"1"+'\n');
+                }
+                else
+                { 
+                    
+                    String ruta1 = "C:/MEIA/desc_Bitacora.txt" ;        
+                    File archivo1 = new File(ruta1);
+                    if(archivo.exists()) 
+                    {
+                        BufferedReader bw1=new BufferedReader (new FileReader(archivo1));
+                        try{
+                           bw1 = new BufferedReader(new FileReader(archivo));
+                           String Linea1 = bw1.readLine();//nombre
+                           String Linea2 = bw1.readLine();//creador
+                           String Linea3 = bw1.readLine();//fecha
+                           String Linea4 = bw1.readLine();//Cantidad max de Registros
+                           String Linea5 = bw1.readLine();//Cantidad total de Registros
+                           String Linea6 = bw1.readLine();//Cantidad de Registros acivos 
+                           String Linea7 = bw1.readLine();//Cantidad de Registros inactivos
+                           String[] parts = Linea1.split("=");
+                           String[] parts1 = Linea6.split("=");
+                           Rol = "usuario";
+                            RegistrosAMover = new String[Integer.parseInt(parts[1])];
+                            while(Linea!=null)
+                            {
+                                RegistrosAMover[ContadorRegistros] = Linea;
+                                ContadorRegistros++;
+                                Linea = AA.readLine();
+                            }
+                            BufferedWriter bw2 = new BufferedWriter(new FileWriter(archivo1));
+                            bw2.write(Linea1+'\n');
+                            bw2.write(Linea2+'\n');
+                            bw2.write(Linea3+'\n');
+                            bw2.write(Linea4+'\n');
+                            if(Integer.toString(ContadorRegistros)==parts[1]) 
+                            {
+                                bw2.write("Total de registros ="+(ContadorRegistros+1)+'\n');
+                                int RActivos = Integer.parseInt(parts1[1])+1;
+                                bw2.write("Total de registros activos ="+RActivos+'\n');
+                                bw2.write(Linea7+'\n');
+                                bw = new BufferedWriter(new FileWriter(archivo));
+                                bw.write(Usuario+"|"+Contrasena+"|"+Nombre+"|"+Apellido+"|"+Nacimiento+"|"+Correo+"|"+Telefono+"|"+Foto+"|"+Rol+"|"+"1"+'\n');
+                                ActualizaUsuario = true;
+                            }
+                            else
+                            {
+                                bw2.write("Total de registros =1"+'\n');
+                                bw2.write("Total de registros activos =1"+'\n');
+                                bw2.write("Total de registros inactivos =0"+'\n');
+                                bw.write(Usuario+"|"+Contrasena+"|"+Nombre+"|"+Apellido+"|"+Nacimiento+"|"+Correo+"|"+Telefono+"|"+Foto+"|"+Rol+"|"+"1"+'\n');
+                
+                            }
+                            bw2.close();
+                            bw1.close();
+                            if (ActualizaUsuario) {
+                                String ruta2 = "C:/MEIA/Usuario.txt" ;
+                                File archivo2 = new File(ruta2);
+                                BufferedWriter bw3;
+                                int RegistrosTransferidos = 0;
+                                if(archivo.exists()) 
+                                {
+                                    try{
+                                       bw3 = new BufferedWriter(new FileWriter(archivo2.getAbsoluteFile(), true));
+                                        for (int i = 0; i < 5; i++) {
+                                            String[] parts2 = RegistrosAMover[i].split("|");
+                                            if (parts2[9]!="0") {
+                                                bw3.write(RegistrosAMover[i]+'\n');
+                                                RegistrosTransferidos++;
+                                            }
+                                        }
+                                       
+                                       bw3.close();
+                                    }
+                                    catch(IOException ex){
+                                        SiSePudo = false;
+                                    }
+                                }
+                                //AAQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+                                ruta2 = "C:/MEIA/desc_Usuario.txt";
+                                archivo2 = new File(ruta2);
+                                if(archivo.exists()) 
+                                {
+                                    try{
+                                        BufferedReader AAA = new BufferedReader (new FileReader(archivo2));
+                                        String LineaD = AAA.readLine();
+                                        if (LineaD==null) {
+                                            try{
+                                                bw = new BufferedWriter(new FileWriter(archivo2.getAbsoluteFile(), true));
+                                                bw.write("Nombre arhivo: Usuario.txt"+'\n');
+                                                bw.write("Creador: "+"admin"+'\n');
+                                                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+                                                LocalDateTime now = LocalDateTime.now();  
+                                                bw.write("Fecha de creacion: "+dtf.format(now)+'\n');  
+                                                bw.write("Total de registros ="+RegistrosTransferidos+'\n');
+                                                bw.write("Total de registros activos ="+RegistrosTransferidos+'\n');
+                                                bw.write("Total de registros inactivos =0");
+                                                
+                                             }
+                                             catch(IOException ex){
+                                                 SiSePudo = false;
+                                             }
+                                        }
+                                        else
+                                        {
+                                            Linea1 = LineaD;//nombre
+                                            Linea2 = bw1.readLine();//creador
+                                            Linea3 = bw1.readLine();//fecha
+                                            Linea4 = bw1.readLine();//Cantidad total de Registros
+                                            Linea5 = bw1.readLine();//Cantidad de Registros acivos 
+                                            Linea6 = bw1.readLine();//Cantidad de Registros inactivos
+                                            try{
+                                                bw = new BufferedWriter(new FileWriter(archivo2));
+                                                bw.write(Linea1+'\n');
+                                                bw.write(Linea2+'\n');
+                                                bw.write(Linea3+'\n');
+                                                String[] parts2 = Linea4.split("=");
+                                                bw.write("Total de registros ="+(Integer.parseInt(parts2[1])+RegistrosTransferidos)+'\n');
+                                                parts2 = Linea5.split("=");
+                                                bw.write("Total de registros activos ="+(Integer.parseInt(parts2[1])+RegistrosTransferidos)+'\n');
+                                                bw.write(Linea6+'\n');                                                
+                                             }
+                                             catch(IOException ex){
+                                                 SiSePudo = false;
+                                             }
+                                        }
+                                        bw.close();
+                                    }
+                                    catch(IOException ex){
+                                        SiSePudo = false;
+                                    }
+                                }
+                            }
+                        }
+                        catch(IOException ex){
+                            SiSePudo = false;
+                        }
+                    }
+                }
+                bw.close();
+            }
+            catch(IOException ex){
+                JOptionPane.showMessageDialog(null,"No se puede ingresar un nuevo usuario");
+                SiSePudo = false;
+            }
+        }    
+        else 
+        {
+            try{
+                bw = new BufferedWriter(new FileWriter(archivo));
+                bw.write("");
+                bw.close();
+            }
+            catch(IOException ex){
+            SiSePudo = false;
+            }
+        }
+        //ESCRITURA DEL DESCRIPTOR
+        if (Rol=="administrador") 
+        {
+            ruta = "C:/MEIA/desc_Bitacora.txt" ;
+            archivo = new File(ruta);
+            if(archivo.exists()) 
+            {
+                try{
+                   bw = new BufferedWriter(new FileWriter(archivo.getAbsoluteFile(), true));
+                   bw.write("Nombre arhivo: Bitacora.txt"+'\n');
+                   bw.write("Creador: "+Usuario+'\n');
+                   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+                   LocalDateTime now = LocalDateTime.now();  
+                   bw.write("Fecha de creacion: "+dtf.format(now)+'\n');                   
+                   bw.write("Cantidad máxima de registros =5"+'\n');
+                   bw.write("Total de registros =1"+'\n');
+                   bw.write("Total de registros activos =1"+'\n');
+                   bw.write("Total de registros inactivos =0");
+                   bw.close();
+                }
+                catch(IOException ex){
+                    SiSePudo = false;
+                }
+            }    
+            else 
+            {
+                try{
+                bw = new BufferedWriter(new FileWriter(archivo));
+                bw.write("");
+                bw.close();
+                }
+                catch(IOException ex){
+                    SiSePudo = false;
+                }
+            }
+        }
+        return SiSePudo;
+}
+   
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -307,6 +608,8 @@ public class CreacionUsuario extends javax.swing.JFrame {
     private javax.swing.JFileChooser jFileChooser2;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -314,11 +617,13 @@ public class CreacionUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
 }

@@ -140,6 +140,54 @@ public class ProyectoArchivos {
             }
         }
         
+        //ARCHIVO BackUp
+        ruta = "C:/MEIA/bitacora_backup.txt" ;
+        archivo = new File(ruta);
+        if(archivo.exists()) 
+        {
+            try{
+               bw = new BufferedWriter(new FileWriter(archivo.getAbsoluteFile(), true));
+               bw.write("");
+               bw.close();
+            }
+            catch(IOException ex){
+            }
+        }    
+        else 
+        {
+            try{
+            bw = new BufferedWriter(new FileWriter(archivo));
+            bw.write("");
+            bw.close();
+            }
+            catch(IOException ex){
+            }
+        }
+        
+        //ARCHIVO  DESCRIPTOR DE BackUp
+        ruta = "C:/MEIA/desc_bitacora_backup.txt" ;
+        archivo = new File(ruta);
+        if(archivo.exists()) 
+        {
+            try{
+               bw = new BufferedWriter(new FileWriter(archivo.getAbsoluteFile(), true));
+               bw.write("");
+               bw.close();
+            }
+            catch(IOException ex){
+            }
+        }    
+        else 
+        {
+            try{
+            bw = new BufferedWriter(new FileWriter(archivo));
+            bw.write("");
+            bw.close();
+            }
+            catch(IOException ex){
+            }
+        }
+        
         java.awt.EventQueue.invokeLater(new Runnable()
         {
             public void run()

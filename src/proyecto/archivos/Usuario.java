@@ -132,7 +132,7 @@ public class Usuario extends javax.swing.JFrame {
                Linea = bw.readLine();
                while(Linea!=null)  
                {
-                   String[] parts = Linea.split("-");
+                   String[] parts = Linea.split("|");
                    String Nombre = jTextField1.getText();
                    String Contrasena = jPasswordField1.getText();
                    if (Nombre.equals(parts[0])&&Contrasena.equals(parts[1])) 
