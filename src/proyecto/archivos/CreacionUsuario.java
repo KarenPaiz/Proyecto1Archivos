@@ -82,6 +82,7 @@ public class CreacionUsuario extends javax.swing.JFrame {
         jLabel5.setText("Correo");
 
         jLabel6.setText("Telefono");
+        jLabel6.setName(""); // NOI18N
 
         jLabel8.setText("Contraseña");
 
@@ -112,6 +113,12 @@ public class CreacionUsuario extends javax.swing.JFrame {
         });
 
         jLabel9.setText("Usuario");
+
+        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -290,6 +297,10 @@ public class CreacionUsuario extends javax.swing.JFrame {
         }  
         
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField6ActionPerformed
     public int contrasenia (String Contrasena)
     {
         int Puntucacion=0;
@@ -417,7 +428,7 @@ public class CreacionUsuario extends javax.swing.JFrame {
                                 bw.write(Usuario+"|"+Contrasena+"|"+Nombre+"|"+Apellido+"|"+Nacimiento+"|"+Correo+"|"+Telefono+"|"+Foto+"|"+Rol+"|"+"1"+'\n');
                                 ActualizaUsuario = true;
                             }
-                            else
+                            else //es la bitacora esa queda iuguak
                             {
                                 bw2.write("Total de registros =1"+'\n');
                                 bw2.write("Total de registros activos =1"+'\n');
